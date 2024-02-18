@@ -1,10 +1,15 @@
 from dash import Input, Output, State
 import plotly.graph_objs as go
-from git_stats import extract_git_stats, clone_remote_repo
+from git_stats import (
+    extract_git_stats,
+    clone_remote_repo,
+    extract_branches_info_new,
+)  # Importando com o novo nome
 import pandas as pd
 import os
 import shutil
 from dash import html
+from git import Repo
 
 
 def register_callbacks(app):
@@ -95,3 +100,20 @@ def register_callbacks(app):
         )
 
         return fig, stats_layout
+
+    @app.callback(
+        Output("branches-info", "children"),
+        [Input("submit-val", "n_clicks")],
+        [State("input-repo", "value")],
+    )
+    def update_branches_info(n_clicks, value):
+        if n_clicks > 0:
+            repo_path = value
+            if not os.path.exists(repo_path):
+                repo_path = clone_remote_repo(value)
+            branches_info = extract_branches_info_new(repo_path)  # Renomeando aqui
+            children = [html.H4("Branches Information:")]
+            for branch, commits in branches_info.items():
+                children.append(html.P(f"{branch}: {commits} commits"))
+            return children
+        return []

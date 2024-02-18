@@ -52,3 +52,12 @@ def extract_git_stats(repo_path):
         "commit_types": commit_types,
         "average_lines_per_commit": average_lines_per_commit,
     }
+
+
+def extract_branches_info_new(repo_path):
+    repo = Repo(repo_path)
+    branches_info = {}
+    for branch in repo.branches:
+        commits_count = sum(1 for _ in repo.iter_commits(branch))
+        branches_info[branch.name] = commits_count
+    return branches_info

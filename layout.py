@@ -3,13 +3,27 @@ from dash import html, dcc
 
 
 def create_layout(app):
-    return dbc.Container(
+    # Navbar
+    navbar = dbc.Navbar(
         [
-            dbc.Row(
-                dbc.Col(
-                    html.H1("Commit Tracker 📊", className="text-center mb-4"), width=12
-                )
+            html.A(
+                dbc.Row(
+                    [
+                        dbc.Col(html.Img(src="/assets/logo.png", height="30px")),
+                        dbc.Col(dbc.NavbarBrand("Commit Tracker", className="ml-2")),
+                    ],
+                    align="center",
+                ),
+                href="#",
             ),
+        ],
+        color="dark",
+        dark=True,
+    )
+
+    content = dbc.Container(
+        [
+            dbc.Row(),
             dbc.Row(
                 dbc.Col(
                     html.H5(
@@ -23,7 +37,7 @@ def create_layout(app):
                 [
                     dbc.Col(
                         html.Label(
-                            "Enter a Git repository path or URL and click Submit",
+                            "Enter a Git repository path or public URL",
                             className="align-self-center",
                         ),
                         width=3,
@@ -58,8 +72,37 @@ def create_layout(app):
                         id="loading-1",
                         type="default",
                         children=[
-                            dcc.Graph(id="graph-commits-over-time"),
-                            html.Div(id="stats-output"),
+                            dbc.Card(
+                                [
+                                    dbc.CardHeader("Commits Over Time"),
+                                    dbc.CardBody(
+                                        dcc.Graph(id="graph-commits-over-time")
+                                    ),
+                                ],
+                                className="mb-4",
+                            ),
+                            dbc.Card(
+                                [
+                                    dbc.CardHeader("Detailed Statistics"),
+                                    dbc.CardBody(
+                                        html.Div(
+                                            id="stats-output", className="text-dark"
+                                        )
+                                    ),
+                                ],
+                                className="mb-4",
+                            ),
+                            dbc.Card(
+                                [
+                                    dbc.CardHeader("Branches Information"),
+                                    dbc.CardBody(
+                                        html.Div(
+                                            id="branches-info", className="text-dark"
+                                        )
+                                    ),
+                                ],
+                                className="mb-4",
+                            ),
                         ],
                     ),
                     width=12,
@@ -75,3 +118,5 @@ def create_layout(app):
         fluid=False,
         className="py-3 px-5",
     )
+    layout = html.Div([navbar, content])
+    return layout

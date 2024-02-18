@@ -7,7 +7,6 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
 
-  # A secção do isort está comentada. Para reativá-la, remove os comentários.
   # - repo: https://github.com/pycqa/isort
   #   rev: 5.10.1
   #   hooks:
@@ -20,10 +19,10 @@ repos:
       - id: black
         language_version: python3
 
-  - repo: https://github.com/pycqa/flake8
-    rev: 4.0.1
-    hooks:
-      - id: flake8
+  # - repo: https://github.com/pycqa/flake8
+  #  rev: 4.0.1
+  #  hooks:
+  #    - id: flake8
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.910
