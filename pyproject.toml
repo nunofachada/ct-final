@@ -10,7 +10,10 @@ long_description = "file: README.md"
 author = "André F. Costa"
 author_email = "afmcosta@gmail.com"
 license = "MIT"
-packages = find_namespace:
+
+[tool.setuptools.find_namespace]
+where = "."
+include = ["*"]
 
 [project]
 dependencies = [
@@ -20,4 +23,3 @@ dependencies = [
     "plotly",
     "dash-bootstrap-components"
 ]
-
