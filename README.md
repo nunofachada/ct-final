@@ -22,7 +22,6 @@ After installation, you can start the application by running:
 ```bash
 commit-tracker
 ```
-
 Follow the instructions in the web interface to input the path or URL of the Git repository you wish to analyze.
 
 ## Contributing

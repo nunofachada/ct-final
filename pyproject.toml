@@ -18,3 +18,9 @@ dependencies = [
     "plotly",
     "dash-bootstrap-components"
 ]
+
+[project.entry-points."commit_tracker.plugins"]
+clone_remote_repo = "git_stats:clone_remote_repo"
+extract_git_stats = "git_stats:extract_git_stats"
+extract_branches_info_new = "git_stats:extract_branches_info_new"
+categorize_commit_type = "git_stats:categorize_commit_type"
