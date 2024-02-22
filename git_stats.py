@@ -27,6 +27,22 @@ def categorize_commit_type(commit_message):
 
 
 def extract_git_stats(repo_path):
+    """
+    Extracts a comprehensive set of statistics from a Git repository located at repo_path.
+
+    This function aggregates data on total commits, contributors, commit dates, commit types (categorized as Bug Fix, Feature, Documentation, or Other), and average lines added or deleted per commit.
+
+    Args:
+        repo_path (str): The filesystem path to the Git repository.
+
+    Returns:
+        dict: A dictionary containing various statistics about the repository, including:
+              - total_commits (int): The total number of commits.
+              - contributors (Counter): A collection of contributors and their commit counts.
+              - commit_dates (list): A list of commit dates.
+              - commit_types (Counter): The counts of different types of commits.
+              - average_lines_per_commit (float): The average number of lines added or deleted per commit.
+    """
     repo = Repo(repo_path)
     commits = list(repo.iter_commits())
 
@@ -55,6 +71,15 @@ def extract_git_stats(repo_path):
 
 
 def extract_branches_info_new(repo_path):
+    """
+    Extracts information about each branch in a Git repository, including the total number of commits per branch.
+
+    Args:
+        repo_path (str): The filesystem path to the Git repository.
+
+    Returns:
+        dict: A dictionary where keys are branch names and values are the total number of commits in each branch.
+    """
     repo = Repo(repo_path)
     branches_info = {}
     for branch in repo.branches:

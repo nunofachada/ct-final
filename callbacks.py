@@ -4,7 +4,7 @@ from git_stats import (
     extract_git_stats,
     clone_remote_repo,
     extract_branches_info_new,
-)  # Importando com o novo nome
+)
 import pandas as pd
 import os
 import shutil
@@ -74,7 +74,6 @@ def register_callbacks(app):
             yaxis_title="Number of Commits",
         )
 
-        # Estatísticas detalhadas
         stats_layout = html.Div(
             [
                 html.H4("Detailed Statistics:"),

@@ -2,20 +2,15 @@
 requires = ["setuptools>=40.6.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
+[project]
 name = "commit-tracker"
 version = "0.1.0"
-description = "Commit Tracker is a tool designed to fetch and present comprehensive statistics from Git repositories. Whether the repository is hosted locally or on platforms like GitHub, Commit Tracker seamlessly analyzes commit history, contribution patterns, and other vital metrics. This utility is particularly useful for developers and teams looking to gain insights into project trends, contributor activity, and overall repository health. Built with Python and leveraging technologies such as Dash and Plotly, it provides an interactive and visually appealing interface for data representation."
-long_description = "file: README.md"
-author = "André F. Costa"
-author_email = "afmcosta@gmail.com"
-license = "MIT"
-
-[tool.setuptools.find_namespace]
-where = "."
-include = ["*"]
-
-[project]
+description = "Commit Tracker analyzes Git repositories to present comprehensive statistics, including commit history, contribution patterns, and more, with an interactive and visually appealing interface built with Python, Dash, and Plotly."
+authors = [
+    {name = "André F. Costa", email = "afmcosta@gmail.com"},
+]
+license = {file = "LICENSE"}
+readme = "file: README.md"
 dependencies = [
     "dash",
     "GitPython",

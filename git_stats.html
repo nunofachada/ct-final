@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module git_stats</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">git_stats</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Candre%5Cct-final%5Cgit_stats.py">c:\users\andre\ct-final\git_stats.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="shutil.html">shutil</a><br>
+</td><td class="multicolumn"><a href="tempfile.html">tempfile</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-categorize_commit_type"><strong>categorize_commit_type</strong></a>(commit_message)</dt></dl>
+ <dl><dt><a name="-clone_remote_repo"><strong>clone_remote_repo</strong></a>(url)</dt></dl>
+ <dl><dt><a name="-extract_branches_info_new"><strong>extract_branches_info_new</strong></a>(repo_path)</dt><dd><span class="code">Extracts&nbsp;information&nbsp;about&nbsp;each&nbsp;branch&nbsp;in&nbsp;a&nbsp;Git&nbsp;repository,&nbsp;including&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;commits&nbsp;per&nbsp;branch.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;repo_path&nbsp;(str):&nbsp;The&nbsp;filesystem&nbsp;path&nbsp;to&nbsp;the&nbsp;Git&nbsp;repository.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;A&nbsp;dictionary&nbsp;where&nbsp;keys&nbsp;are&nbsp;branch&nbsp;names&nbsp;and&nbsp;values&nbsp;are&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;commits&nbsp;in&nbsp;each&nbsp;branch.</span></dd></dl>
+ <dl><dt><a name="-extract_git_stats"><strong>extract_git_stats</strong></a>(repo_path)</dt><dd><span class="code">Extracts&nbsp;a&nbsp;comprehensive&nbsp;set&nbsp;of&nbsp;statistics&nbsp;from&nbsp;a&nbsp;Git&nbsp;repository&nbsp;located&nbsp;at&nbsp;repo_path.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;aggregates&nbsp;data&nbsp;on&nbsp;total&nbsp;commits,&nbsp;contributors,&nbsp;commit&nbsp;dates,&nbsp;commit&nbsp;types&nbsp;(categorized&nbsp;as&nbsp;Bug&nbsp;Fix,&nbsp;Feature,&nbsp;Documentation,&nbsp;or&nbsp;Other),&nbsp;and&nbsp;average&nbsp;lines&nbsp;added&nbsp;or&nbsp;deleted&nbsp;per&nbsp;commit.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;repo_path&nbsp;(str):&nbsp;The&nbsp;filesystem&nbsp;path&nbsp;to&nbsp;the&nbsp;Git&nbsp;repository.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;A&nbsp;dictionary&nbsp;containing&nbsp;various&nbsp;statistics&nbsp;about&nbsp;the&nbsp;repository,&nbsp;including:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;total_commits&nbsp;(int):&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;commits.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;contributors&nbsp;(Counter):&nbsp;A&nbsp;collection&nbsp;of&nbsp;contributors&nbsp;and&nbsp;their&nbsp;commit&nbsp;counts.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;commit_dates&nbsp;(list):&nbsp;A&nbsp;list&nbsp;of&nbsp;commit&nbsp;dates.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;commit_types&nbsp;(Counter):&nbsp;The&nbsp;counts&nbsp;of&nbsp;different&nbsp;types&nbsp;of&nbsp;commits.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;average_lines_per_commit&nbsp;(float):&nbsp;The&nbsp;average&nbsp;number&nbsp;of&nbsp;lines&nbsp;added&nbsp;or&nbsp;deleted&nbsp;per&nbsp;commit.</span></dd></dl>
+</td></tr></table>
+</body></html>
