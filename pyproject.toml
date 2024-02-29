@@ -5,12 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "commit-tracker"
 version = "0.1.0"
-description = "Commit Tracker analyzes Git repositories to present comprehensive statistics, including commit history, contribution patterns, and more, with an interactive and visually appealing interface built with Python, Dash, and Plotly."
-authors = [
-    {name = "André F. Costa", email = "afmcosta@gmail.com"},
-]
-license = {file = "LICENSE"}
-readme = "file: README.md"
+description = "Commit Tracker analyzes Git repositories to present comprehensive statistics."
+authors = [{name = "André F. Costa", email = "afmcosta@gmail.com"}]
+license = {file = "LICENSE.txt"}
+readme = "README.md"
 dependencies = [
     "dash",
     "GitPython",
@@ -19,8 +17,11 @@ dependencies = [
     "dash-bootstrap-components"
 ]
 
+[tool.setuptools.scripts]
+commit-tracker = "commit_tracker.__main__:main"
+
 [project.entry-points."commit_tracker.plugins"]
-clone_remote_repo = "git_stats:clone_remote_repo"
-extract_git_stats = "git_stats:extract_git_stats"
-extract_branches_info_new = "git_stats:extract_branches_info_new"
-categorize_commit_type = "git_stats:categorize_commit_type"
+clone_remote_repo = "commit_tracker.git_stats:clone_remote_repo"
+extract_git_stats = "commit_tracker.git_stats:extract_git_stats"
+extract_branches_info_new = "commit_tracker.git_stats:extract_branches_info_new"
+categorize_commit_type = "commit_tracker.git_stats:categorize_commit_type"

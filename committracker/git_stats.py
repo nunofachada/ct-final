@@ -72,15 +72,6 @@ def extract_git_stats(repo_path):
 
 
 def extract_branches_info_new(repo_path):
-    """
-    Extracts information about each branch in a Git repository, including the total number of commits per branch.
-
-    Args:
-        repo_path (str): The filesystem path to the Git repository.
-
-    Returns:
-        dict: A dictionary where keys are branch names and values are the total number of commits in each branch.
-    """
     try:
         repo = Repo(repo_path)
         branches_info = {}

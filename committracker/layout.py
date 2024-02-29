@@ -9,7 +9,9 @@ def create_layout(app):
             html.A(
                 dbc.Row(
                     [
-                        dbc.Col(html.Img(src="/assets/logo.png", height="30px")),
+                        dbc.Col(
+                            html.Img(src="../docs/assets/img/logo.png", height="30px")
+                        ),
                         dbc.Col(dbc.NavbarBrand("Commit Tracker", className="ml-2")),
                     ],
                     align="center",
