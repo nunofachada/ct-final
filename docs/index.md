@@ -1,17 +1,32 @@
-# Welcome to MkDocs
+# Welcome to Commit Tracker
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Commit Tracker is a powerful tool designed to analyze Git repositories, offering comprehensive statistics on commit activities, contributors, and much more. This tool makes it easier to get an overview of development progress and to delve into the details of commit history.
 
-## Commands
+## Key Features
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+- Detailed commit analysis
+- Statistics on contributors
+- Plugin integration for expanded functionalities
+- Intuitive web interface based on Dash
 
-## Project layout
+## Why Use Commit Tracker?
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Commit Tracker provides valuable insights for project managers, developers, and analysts alike, enabling a deep understanding of development trends and individual contributions.
+
+## Installation
+
+To install Commit Tracker, simply run:
+
+`pip install commit-tracker`
+
+This command fetches the latest version of Commit Tracker from PyPI and installs it on your system.
+
+## Launching Commit Tracker
+
+After installation, you can launch Commit Tracker's Dash application to start analyzing Git repositories:
+
+`python -m committracker`
+
+This command starts a local web server. Open your web browser and navigate to http://127.0.0.1:8050/ to access the Commit Tracker dashboard.
+
+For more detailed information on development and contributing to Commit Tracker, please refer to the developers documentation in dev.md dile.
