@@ -3,7 +3,7 @@ import plotly.graph_objs as go
 import pandas as pd
 import shutil
 import os
-from git_stats import clone_remote_repo, extract_git_stats, extract_branches_info_new
+from .git_stats import clone_remote_repo, extract_git_stats, extract_branches_info_new
 
 
 def register_callbacks(app):

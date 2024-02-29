@@ -1,11 +1,11 @@
-from .plugin_loader import load_plugins
-from . import app
+from committracker.plugin_loader import load_plugins
+from committracker import app
 
 
 def main():
 
     plugins = load_plugins()
-    print("Inicializando o Commit Tracker...")
+    print("Initializing Commit Tracker...")
 
     app.run_server(debug=True)
 

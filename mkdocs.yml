@@ -1,0 +1,45 @@
+site_name: Commit Tracker
+site_description: "Commit Tracker analyzes Git repositories to present comprehensive statistics."
+site_author: "André F. Costa"
+site_url: https://github.com/andrecosta99/commit-tracker
+
+nav:
+  - Home: index.md
+  - Introduction:
+      - Overview: introduction/overview.md
+      - Installation: introduction/installation.md
+  - User Guide:
+      - Getting Started: user-guide/getting-started.md
+      - Usage: user-guide/usage.md
+  - API Reference:
+      - Plugins: api-reference/plugins.md
+      - Git Stats: api-reference/git-stats.md
+  - Contributing: contributing.md
+  - About:
+      - The Author: about/author.md
+      - License: about/license.md
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.expand
+    - toc.integrate
+  palette:
+    primary: indigo
+    accent: indigo
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
