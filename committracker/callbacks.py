@@ -59,7 +59,7 @@ def register_callbacks(app):
         )
         stats_layout = html.Div(
             [
-                html.H4("Detailed Statistics:"),
+                html.H5("Commit Information:"),
                 html.P(f"Total Commits: {stats['total_commits']}"),
                 html.P(
                     f"Average Lines per Commit: {stats['average_lines_per_commit']:.2f}"
@@ -103,7 +103,7 @@ def register_callbacks(app):
             branches_info = extract_branches_info_new(repo_path)
         except Exception as e:
             return f"Error: {e}"
-        children = [html.H4("Branches Information:")]
+        children = [html.H5("Branches Information:")]
         for branch, commits in branches_info.items():
             children.append(html.P(f"{branch}: {commits} commits"))
         return children

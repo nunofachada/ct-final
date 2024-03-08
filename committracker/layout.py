@@ -10,9 +10,10 @@ def create_layout(app):
                 dbc.Row(
                     [
                         dbc.Col(
-                            html.Img(src="../docs/assets/img/logo.png", height="30px")
+                            html.Img(src="https://images.emojiterra.com/twitter/v13.1/512px/1f4c8.png", height="30px", style={"marginLeft": "20px"})
                         ),
                         dbc.Col(dbc.NavbarBrand("Commit Tracker", className="ml-2")),
+
                     ],
                     align="center",
                 ),
@@ -85,7 +86,7 @@ def create_layout(app):
                             ),
                             dbc.Card(
                                 [
-                                    dbc.CardHeader("Detailed Statistics"),
+                                    dbc.CardHeader("General Statistics"),
                                     dbc.CardBody(
                                         html.Div(
                                             id="stats-output", className="text-dark"
@@ -96,7 +97,7 @@ def create_layout(app):
                             ),
                             dbc.Card(
                                 [
-                                    dbc.CardHeader("Branches Information"),
+                                    dbc.CardHeader("Branches Statistics"),
                                     dbc.CardBody(
                                         html.Div(
                                             id="branches-info", className="text-dark"
