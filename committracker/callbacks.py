@@ -1,109 +1,29 @@
-from dash import Input, Output, State, html, dcc
-import plotly.graph_objs as go
-import pandas as pd
-import shutil
-import os
-from .git_stats import clone_remote_repo, extract_git_stats, extract_branches_info_new
-
+from dash import Output, Input, State, callback, html
+from .utils import clone_remote_repo
+from .plugin_loader import load_plugins
 
 def register_callbacks(app):
     @app.callback(
-        [
-            Output("graph-commits-over-time", "figure"),
-            Output("stats-output", "children"),
-        ],
-        [
-            Input("submit-val", "n_clicks"),
-        ],
-        [
-            State("input-repo", "value"),
-        ],
+        Output('plugin-output-area', 'children'),
+        [Input('load-repo-button', 'n_clicks')],
+        [State('repo-input', 'value'), State('plugin-selector', 'value')]
     )
-    def update_output(n_clicks, value):
-        if n_clicks is None or not value:
-            return go.Figure(), "Please enter a repository URL."
-        repo_path = value
-        is_cloned = False
-        try:
-            if not os.path.exists(value):
-                repo_path = clone_remote_repo(value)
-                if not repo_path:
-                    raise Exception("Failed to clone repository.")
-                is_cloned = True
-            stats = extract_git_stats(repo_path)
-        except Exception as e:
-            return go.Figure(), str(e)
-        finally:
-            if is_cloned:
-                shutil.rmtree(repo_path, ignore_errors=True)
-        df = pd.DataFrame({"Commit Date": stats["commit_dates"]})
-        df["Commit Date"] = pd.to_datetime(df["Commit Date"], utc=True).dt.tz_localize(
-            None
-        )
-        df_group = (
-            df.groupby(df["Commit Date"].dt.date).size().reset_index(name="Commits")
-        )
-        fig = go.Figure(
-            data=[
-                go.Scatter(
-                    x=df_group["Commit Date"],
-                    y=df_group["Commits"],
-                    mode="lines+markers",
-                )
-            ]
-        )
-        fig.update_layout(
-            title="Commits Over Time",
-            xaxis_title="Date",
-            yaxis_title="Number of Commits",
-        )
-        stats_layout = html.Div(
-            [
-                html.H5("Commit Information:"),
-                html.P(f"Total Commits: {stats['total_commits']}"),
-                html.P(
-                    f"Average Lines per Commit: {stats['average_lines_per_commit']:.2f}"
-                ),
-                html.H5("Commits by Contributor:"),
-                html.Ul(
-                    [
-                        html.Li(f"{contributor}: {commits}")
-                        for contributor, commits in stats["contributors"].items()
-                    ]
-                ),
-                html.H5("Commit Types:"),
-                html.Ul(
-                    [
-                        html.Li(f"{commit_type}: {count}")
-                        for commit_type, count in stats["commit_types"].items()
-                    ]
-                ),
-            ]
-        )
-        return fig, stats_layout
+    def update_plugin_output(n_clicks, repo_url, selected_plugins):
+        if n_clicks is None or n_clicks < 1:
+            return []
+        if not repo_url or not selected_plugins:
+            return [html.Div("Please enter a repository URL and select at least one plugin.")]
 
-    @app.callback(
-        Output("branches-info", "children"),
-        [
-            Input("submit-val", "n_clicks"),
-        ],
-        [
-            State("input-repo", "value"),
-        ],
-    )
-    def update_branches_info(n_clicks, value):
-        if n_clicks is None or not value:
-            return "Please enter a repository URL."
-        try:
-            repo_path = value
-            if not os.path.exists(value):
-                repo_path = clone_remote_repo(value)
-                if not repo_path:
-                    raise Exception("Failed to clone repository for branches info.")
-            branches_info = extract_branches_info_new(repo_path)
-        except Exception as e:
-            return f"Error: {e}"
-        children = [html.H5("Branches Information:")]
-        for branch, commits in branches_info.items():
-            children.append(html.P(f"{branch}: {commits} commits"))
-        return children
+        repo_path = clone_remote_repo(repo_url)
+        if repo_path is None:
+            return [html.Div("Failed to clone the repository.")]
+
+        plugins = load_plugins()
+        plugin_outputs = []
+        for plugin_name in selected_plugins:
+            plugin_function = plugins.get(plugin_name)
+            if plugin_function:
+                plugin_output = plugin_function(repo_path)
+                plugin_outputs.append(plugin_output)
+
+        return plugin_outputs
