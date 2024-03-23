@@ -1,8 +1,9 @@
 import pandas as pd
 import plotly.graph_objs as go
 from dash import dcc
-from git import Repo
 from dash.exceptions import PreventUpdate
+from git import Repo
+
 
 # Extract commits over time
 def extract_commit_dates(repo_path):
@@ -13,6 +14,7 @@ def extract_commit_dates(repo_path):
         return commit_dates
     except Exception as e:
         return {"error": str(e)}
+
 
 # Display commits over times
 def display_commit_graph(repo_path):

@@ -1,7 +1,9 @@
-import subprocess
-from git import Repo
-from dash import html
 import os
+import subprocess
+
+from dash import html
+from git import Repo
+
 
 def run_code_quality_analysis(repo_path):
     """
@@ -24,12 +26,13 @@ def run_code_quality_analysis(repo_path):
             raise Exception("The Git repository is empty.")
 
         # Run Flake8 command
-        result = subprocess.run(['flake8', repo_path], capture_output=True, text=True)
+        result = subprocess.run(["flake8", repo_path], capture_output=True, text=True)
 
         # Return Flake8 output
         return result.stdout if result.stdout else "No issues found by Flake8."
     except Exception as e:
-        return f'Error: {e}'
+        return f"Error: {e}"
+
 
 def display_code_quality(repo_path):
     """
@@ -42,7 +45,12 @@ def display_code_quality(repo_path):
         dash.html.Div: A Dash component containing the Flake8 analysis report.
     """
     quality_report = run_code_quality_analysis(repo_path)
-    return html.Div([
-        html.H5('Code Quality Analysis (Flake8)'),
-        html.Pre(quality_report, style={'whiteSpace': 'pre-wrap', 'wordBreak': 'break-all'})
-    ])
+    return html.Div(
+        [
+            html.H5("Code Quality Analysis (Flake8)"),
+            html.Pre(
+                quality_report,
+                style={"whiteSpace": "pre-wrap", "wordBreak": "break-all"},
+            ),
+        ]
+    )

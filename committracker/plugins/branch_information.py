@@ -1,6 +1,8 @@
 import logging
-from git import Repo
+
 from dash import html
+from git import Repo
+
 
 # Extract branches info
 def extract_branches_info(repo_path):
@@ -15,6 +17,7 @@ def extract_branches_info(repo_path):
         logging.error(f"Error extracting branches information: {e}")
         return {"error": str(e)}
 
+
 # Display branches info
 def display_branch_information(repo_path):
     branches_info = extract_branches_info(repo_path)
@@ -22,7 +25,10 @@ def display_branch_information(repo_path):
         return html.Div(f"Error: {branches_info['error']}")
 
     branches_list = html.Ul(
-        [html.Li(f"{branch}: {commits} commits") for branch, commits in branches_info.items()]
+        [
+            html.Li(f"{branch}: {commits} commits")
+            for branch, commits in branches_info.items()
+        ]
     )
 
     return html.Div([html.H5("Branches"), branches_list])

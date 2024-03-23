@@ -15,6 +15,7 @@ PLUGIN_TITLES = {
     "code_quality": "Python Code Quality",
 }
 
+
 # Decorator to specify callback for input validation
 @callback(
     Output("url-error-message", "children"),
@@ -36,6 +37,7 @@ def validate_input(n_clicks, url, selected_plugins):
         plugin_error = "Please select at least one plugin."
     # Return error messages
     return url_error, plugin_error
+
 
 # Function to register callbacks in the app
 def register_callbacks(app):

@@ -1,16 +1,21 @@
 from collections import Counter
-from git import Repo
+
 from dash import html
+from git import Repo
+
 
 # Extract commit types
 def extract_commit_types(repo_path):
     try:
         repo = Repo(repo_path)
         commits = list(repo.iter_commits())
-        commit_types = Counter(categorize_commit_type(commit.message) for commit in commits)
+        commit_types = Counter(
+            categorize_commit_type(commit.message) for commit in commits
+        )
         return commit_types
     except Exception as e:
         return {"error": str(e)}
+
 
 # Categorize commits
 def categorize_commit_type(commit_message):
@@ -24,6 +29,7 @@ def categorize_commit_type(commit_message):
     else:
         return "Other"
 
+
 # Display commit types
 def display_commit_type(repo_path):
     commit_type = extract_commit_types(repo_path)
@@ -31,13 +37,12 @@ def display_commit_type(repo_path):
         return html.Div(f"Error: {commit_type['error']}")
 
     commit_types_list = html.Ul(
-        [html.Li(f"{commit_type}: {count}") for commit_type, count in commit_type.items()]
+        [
+            html.Li(f"{commit_type}: {count}")
+            for commit_type, count in commit_type.items()
+        ]
     )
 
     return html.Div(
-        [
-            html.H5("Commits"),
-            commit_types_list
-        ],
-        className="commit-types-container"
+        [html.H5("Commits"), commit_types_list], className="commit-types-container"
     )
