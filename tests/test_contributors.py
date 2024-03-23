@@ -10,8 +10,8 @@ sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "committracker"))
 )
 
-from committracker.plugins.contributors import (
-    display_contributors,
+from committracker.plugins.contributors_info import (
+    display_contributors_info,
     extract_contributors,
 )
 
@@ -61,6 +61,6 @@ def test_display_contributors_success(git_repo_mock_contributors):
     Checks that the component correctly reflects the contribution counts for each contributor.
     """
     repo_path = "dummy/path/to/repo"
-    component = display_contributors(repo_path)
+    component = display_contributors_info(repo_path)
     assert "John Doe: 2" in str(component)
     assert "Jane Doe: 1" in str(component)
