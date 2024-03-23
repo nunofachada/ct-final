@@ -1,17 +1,19 @@
 import pytest
 from unittest.mock import patch, MagicMock
+from collections import Counter
 import sys
 import os
-from collections import Counter
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'committracker')))
 
+# Import the function under test.
 from committracker.plugins.commit_type import extract_commit_types
 
 @pytest.fixture
 def git_repo_mock():
+    # Mock the Repo object and its iter_commits method to simulate a repository with a predefined set of commits.
     with patch('committracker.plugins.commit_type.Repo') as mock_repo:
-
+        # Define a series of mock commits with various commit messages to test categorization.
         mock_repo.return_value.iter_commits.return_value = [
             MagicMock(message='fixed a bug in the login feature'),
             MagicMock(message='add a new feature for user profiles'),
@@ -27,6 +29,7 @@ def git_repo_mock():
         yield mock_repo
 
 def test_extract_commit_types_success(git_repo_mock):
+    # Test the successful extraction and categorization of commit types from the mock repository.
     repo_path = 'dummy/path/to/repo'
     expected_output = Counter({'Bug Fix': 3, 'Feature': 3, 'Documentation': 2, 'Other': 2})
     commit_types = extract_commit_types(repo_path)
