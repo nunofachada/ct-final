@@ -11,12 +11,11 @@ PLUGIN_TITLES = {
     "commit_graph": "Commit Graph",
     "branch_information": "Branch Information",
     "commit_type": "Commit Type",
-    "contributors": "Project Contributers",
+    "contributors": "Project Contributors",
     "code_quality": "Python Code Quality",
 }
 
 
-# Decorator to specify callback for input validation
 @callback(
     Output("url-error-message", "children"),
     Output("plugin-error-message", "children"),
@@ -25,70 +24,86 @@ PLUGIN_TITLES = {
     State("plugin-selector", "value"),
     prevent_initial_call=True,
 )
-# Function to validate the input fields
 def validate_input(n_clicks, url, selected_plugins):
+    """
+    Validates the input fields. Checks if the repository URL is entered
+    and at least one plugin is selected. Returns error messages accordingly.
+
+    Args:
+        n_clicks (int): The number of times the load repository button was clicked.
+        url (str): The URL of the Git repository.
+        selected_plugins (list): The selected plugins.
+
+    Returns:
+        tuple: Tuple containing URL error message and plugin error message.
+    """
     url_error = ""
     plugin_error = ""
-    # Check if the repository URL is entered
     if not url:
         url_error = "Please enter a repository URL."
-    # Check if at least one plugin is selected
     if not selected_plugins:
         plugin_error = "Please select at least one plugin."
-    # Return error messages
     return url_error, plugin_error
 
 
-# Function to register callbacks in the app
 def register_callbacks(app):
-    # Decorator to specify callback for updating plugin output
+    """
+    Registers callbacks in the application. Handles the interactions in the application,
+    including validating inputs and updating the plugin output area based on the
+    selected plugins and repository URL.
+
+    Args:
+        app (Dash app): The Dash application instance where callbacks will be registered.
+    """
+
     @app.callback(
         Output("plugin-output-area", "children"),
         [Input("load-repo-button", "n_clicks")],
         [State("repo-input", "value"), State("plugin-selector", "value")],
     )
-    # Function to update the plugin output based on user interactions
     def update_plugin_output(n_clicks, repo_url, selected_plugins):
-        # Prevent update if inputs are not valid
+        """
+        Updates the plugin output based on user interactions. Clones the repository,
+        loads the selected plugins, and updates the output area with the results
+        from each plugin.
+
+        Args:
+            n_clicks (int): The number of times the load repository button was clicked.
+            repo_url (str): The URL of the Git repository to analyze.
+            selected_plugins (list): The selected plugins for analysis.
+
+        Returns:
+            list: A list of Dash components representing the output from each selected plugin.
+        """
         if n_clicks is None or n_clicks < 1 or not repo_url or not selected_plugins:
             raise PreventUpdate
 
-        # Display a loading message while data is being loaded
         loading_message = html.Div(
-            "Data Updated",
+            "Data is updated",
             style={"textAlign": "center", "marginTop": "14px", "marginBottom": "20px"},
         )
 
-        # Clone the Git repository
         repo_path = clone_remote_repo(repo_url)
-        # Show error if repository cloning fails
         if repo_path is None:
             return [html.Div("Failed to clone the repository.")]
 
-        # Load all available plugins
         plugins = load_plugins()
-        # Begin with the loading message
         plugin_outputs = [loading_message]
-        # Iterate over selected plugins and generate their outputs
+
         for plugin_name in selected_plugins:
             plugin_function = plugins.get(plugin_name)
             if plugin_function:
                 try:
-                    # Generate plugin output
                     plugin_output = plugin_function(repo_path)
-                    # Get the title for the plugin
                     card_title = PLUGIN_TITLES.get(
                         plugin_name, plugin_name.replace("_", " ").title()
                     )
-                    # Create a card to display the plugin output
                     card = dbc.Card(
                         [dbc.CardHeader(card_title), dbc.CardBody([plugin_output])],
                         className="mb-4",
                     )
-                    # Append the card to the outputs
                     plugin_outputs.append(card)
                 except Exception as e:
-                    # Append error message if plugin loading fails
                     plugin_outputs.append(html.Div(f"Error loading {plugin_name}: {e}"))
-        # Return all plugin outputs
+
         return plugin_outputs

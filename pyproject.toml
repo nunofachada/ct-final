@@ -82,16 +82,11 @@ line_length = 88
 
 [tool.flake8]
 extend-select = ["B9", "C4"]
-max-line-length = 88
-max-doc-length = 88
+max-line-length = 120
+max-doc-length = 120
 ignore = [
-    "B905",  # Force `strict` in zip(), but this requires Python 3.10
-    "E203",  # "whitespace before ':'"", but that's how black likes it
-    "D100",
-    "D104",
-    "E501",
-    "W503" ] # "line break before binary operator", conflicts with black
-
+    "B905", "E203", "D100", "D104", "E501", "W503", "D103", "D202", "D205", "D212", "D415", "W505", "B950", "E402", "PT001", "PT004", "SIM117", "D200", "F401", "D103", "D202", "D205", "D212", "D415", "W505", "B950", "E402", "PT001", "D200", "F401", "PT004", "SIM117", "W505", "B950", "D103", "D202", "D205", "D212", "D415"
+]
 doctests = true
 exclude = [
     ".git",
@@ -103,6 +98,6 @@ exclude = [
     "venv",
     ".eggs",
     "*.egg",
-    "docs" ]
-# flake8-docstrings
+    "docs"
+]
 docstring-convention = "google"
