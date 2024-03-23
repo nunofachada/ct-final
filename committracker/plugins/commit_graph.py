@@ -7,6 +7,19 @@ from git import Repo
 
 # Extract commits over time
 def extract_commit_dates(repo_path):
+    """
+    Extracts commit dates from a local Git repository to analyze commit activity over time.
+
+    This function iterates over all commits in the specified repository, collecting the datetime for each commit.
+
+    Args:
+        repo_path (str): The file system path to the local Git repository.
+
+    Returns:
+        list: A list of datetime objects representing the commit dates.
+        Returns a dictionary with an 'error' key if an exception occurs.
+    """
+
     try:
         repo = Repo(repo_path)
         commits = list(repo.iter_commits())
@@ -18,6 +31,23 @@ def extract_commit_dates(repo_path):
 
 # Display commits over times
 def display_commit_graph(repo_path):
+    """
+    Generates and displays a graph of commit activity over time for a Git repository using Dash and Plotly.
+
+    This function first extracts commit dates and then uses Pandas to organize these dates into a DataFrame
+    for easy plotting with Plotly. The resulting graph shows the number of commits per day.
+
+    Args:
+        repo_path (str): The file system path to the local Git repository.
+
+    Returns:
+        dash.dcc.Graph: A Dash graph component that visually represents commit activity over time.
+        If an error occurs in extracting commit dates, this function raises PreventUpdate to stop the Dash app from updating.
+
+    Raises:
+        PreventUpdate: If there is an error in extracting commit dates, indicating that the graph cannot be displayed.
+    """
+
     commit_dates = extract_commit_dates(repo_path)
     if "error" in commit_dates:
         raise PreventUpdate
