@@ -4,20 +4,18 @@ Commit Tracker is a powerful tool designed to analyze Git repositories, offering
 
 ## Key Features
 
-- Detailed commit analysis
-- Statistics on contributors
-- Plugin integration for expanded functionalities
-- Intuitive web interface based on Dash
+- **Detailed Commit Analysis**: Explore commit logs for insights and statistics.
+- **Contributor Statistics**: See the distribution of contributions across team members.
+- **Plugin Integration**: Enhance functionalities with plugins for additional metrics.
+- **Intuitive Web Interface**: Navigate your Git statistics via a user-friendly dashboard built with Dash.
 
 ## Why Use Commit Tracker?
 
-Commit Tracker provides valuable insights for project managers, developers, and analysts alike, enabling a deep understanding of development trends and individual contributions.
+Commit Tracker equips project managers, developers, and analysts with the insights needed to deeply understand development trends and contributions. It's the perfect tool for streamlining the development process, identifying bottlenecks, or simply getting a snapshot of your project's health.
 
 ## Installation
 
-To install Commit Tracker, simply run:
-
-`pip install commit-tracker`
+To install Commit Tracker, simply run: `pip install commit-tracker`
 
 This command fetches the latest version of Commit Tracker from PyPI and installs it on your system.
 
@@ -25,8 +23,8 @@ This command fetches the latest version of Commit Tracker from PyPI and installs
 
 After installation, you can launch Commit Tracker's Dash application to start analyzing Git repositories:
 
-`python -m committracker`
+To start, run: `python -m committracker`
 
 This command starts a local web server. Open your web browser and navigate to http://127.0.0.1:8050/ to access the Commit Tracker dashboard.
 
-For more detailed information on development and contributing to Commit Tracker, please refer to the developers documentation in dev.md dile.
+For more detailed information on development and contributing to Commit Tracker, please refer to the developers documentation in the `dev.md` file.

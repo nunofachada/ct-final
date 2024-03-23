@@ -2,45 +2,45 @@
 
 Commit Tracker provides a set of functionalities to analyze Git repositories, offering insights through statistics and visualizations. This document details the available functions and their usage.
 
-## clone_remote_repo
+## extract_contributors
 
-Clones a remote Git repository to a temporary directory for analysis.
-
-### Parameters
-
-- url: String. The URL of the Git repository to clone.
-
-### Returns
-
-- Path to the temporary directory containing the cloned repository.
-
-### Usage
-
-from committracker.git_stats import clone_remote_repo
-
-repo_path = clone_remote_repo("https://github.com/user/repo.git")
-
-## categorize_commit_type
-
-Categorizes a commit message into predefined types such as Bug Fix, Feature, Documentation, or Other.
+Extracts contributor data from a repository, showing the number of commits made by each contributor.
 
 ### Parameters
 
-- commit_message: String. The commit message to categorize.
+- repo_path: String. The path to the local Git repository.
 
 ### Returns
 
-- String. The category of the commit.
+- Counter: A counter object where keys are author names and values are the number of commits made by each author.
 
 ### Usage
 
-from committracker.git_stats import categorize_commit_type
+from committracker.plugins.contributors import extract_contributors
 
-commit_type = categorize_commit_type("fix a critical bug")
+contributors = extract_contributors("/path/to/repo")
+
+## display_contributors
+
+Displays contributor data in a Dash component.
+
+### Parameters
+
+- repo_path: String. The path to the local Git repository.
+
+### Returns
+
+- Dash component containing the list of contributors and their commit counts.
+
+### Usage
+
+from committracker.plugins.contributors import display_contributors
+
+component = display_contributors("/path/to/repo")
 
 ## extract_git_stats
 
-Extracts statistics from a local Git repository, including total commits, contributions by author, commit dates, and types of commits based on their messages.
+Extracts various statistics from a local Git repository, such as total commits, commit dates, and average lines changed per commit.
 
 ### Parameters
 
@@ -48,17 +48,17 @@ Extracts statistics from a local Git repository, including total commits, contri
 
 ### Returns
 
-- Dictionary. A dictionary containing various statistics about the repository.
+- Dictionary: A dictionary containing various statistics about the repository.
 
 ### Usage
 
-from committracker.git_stats import extract_git_stats
+from committracker.plugins.git_statistics import extract_git_stats
 
 stats = extract_git_stats("/path/to/repo")
 
-## extract_branches_info_new
+## display_git_statistics
 
-Extracts information about the branches in a Git repository, including the number of commits per branch.
+Displays Git statistics in a Dash component.
 
 ### Parameters
 
@@ -66,12 +66,30 @@ Extracts information about the branches in a Git repository, including the numbe
 
 ### Returns
 
-- Dictionary. A dictionary where keys are branch names and values are the number of commits on each branch.
+- Dash component containing the Git statistics visualization.
 
 ### Usage
 
-from committracker.git_stats import extract_branches_info_new
+from committracker.plugins.git_statistics import display_git_statistics
 
-branches_info = extract_branches_info_new("/path/to/repo")
+component = display_git_statistics("/path/to/repo")
+
+## display_commit_graph
+
+Generates and displays a graph of commits over time.
+
+### Parameters
+
+- repo_path: String. The path to the local Git repository.
+
+### Returns
+
+- Dash component containing the commit graph.
+
+### Usage
+
+from committracker.plugins.commit_graph import display_commit_graph
+
+component = display_commit_graph("/path/to/repo")
 
 For more detailed examples and additional functionalities, please refer to the User Guide and API Reference sections.
