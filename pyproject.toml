@@ -45,9 +45,9 @@ dev = [
     "flake8-comprehensions",
     "flake8-docstrings",
     "flake8-isort",
-    "Flake8-pyproject",
     "flake8-pytest-style",
     "flake8-simplify",
+    "Flake8-pyproject",
     "isort",
     "mypy",
     "pre-commit",
@@ -87,6 +87,9 @@ max-doc-length = 88
 ignore = [
     "B905",  # Force `strict` in zip(), but this requires Python 3.10
     "E203",  # "whitespace before ':'"", but that's how black likes it
+    "D100",
+    "D104",
+    "E501",
     "W503" ] # "line break before binary operator", conflicts with black
 
 doctests = true

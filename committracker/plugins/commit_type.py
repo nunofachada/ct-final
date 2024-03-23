@@ -71,6 +71,7 @@ Returns:
                    If there's an error in extracting commit types, the component will display the error message.
 """
 
+
 def display_commit_type(repo_path):
     commit_type = extract_commit_types(repo_path)
     if "error" in commit_type:

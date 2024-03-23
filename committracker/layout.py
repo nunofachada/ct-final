@@ -47,7 +47,8 @@ def create_layout(app):
         options=plugin_options,
         multi=True,  # Allows selecting multiple plugins
         placeholder="Select plugins...",
-        className="mb-2",)
+        className="mb-2",
+    )
 
     # Input field for repository URL
     repo_input = dbc.Input(

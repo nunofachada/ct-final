@@ -31,15 +31,15 @@ def extract_branches_info(repo_path):
 # Display branches info
 def display_branch_information(repo_path):
     """
-        Creates a Dash HTML component to display information about branches in a Git repository.
+    Creates a Dash HTML component to display information about branches in a Git repository.
 
-        Args:
-            repo_path (str): Path to the local Git repository.
+    Args:
+        repo_path (str): Path to the local Git repository.
 
-        Returns:
-            dash.html.Div: A Dash HTML component that lists the branches and their respective commit counts.
-            Returns a Div with an error message if there's an error in extracting branch information.
-        """
+    Returns:
+        dash.html.Div: A Dash HTML component that lists the branches and their respective commit counts.
+        Returns a Div with an error message if there's an error in extracting branch information.
+    """
     branches_info = extract_branches_info(repo_path)
     if "error" in branches_info:
         return html.Div(f"Error: {branches_info['error']}")

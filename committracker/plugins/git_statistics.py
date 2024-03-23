@@ -63,6 +63,8 @@ Returns:
     dash.html.Div: A Dash HTML component containing the visual representation of the repository's general statistics.
                    If an error occurs during statistics extraction, the component will display the error message.
 """
+
+
 def display_git_statistics(repo_path):
     stats = extract_git_stats(repo_path)
     if "error" in stats:
