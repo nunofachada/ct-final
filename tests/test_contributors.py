@@ -5,7 +5,6 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-# Adjust the system path to ensure the committracker package can be imported
 sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "committracker"))
 )
@@ -23,7 +22,7 @@ def git_repo_mock_contributors():
 
     This allows testing of contributor extraction functionality without a real repository.
     """
-    with patch("committracker.plugins.contributors.Repo") as mock_repo:
+    with patch("committracker.plugins.contributors_info.Repo") as mock_repo:
         mock_commit_1 = MagicMock()
         mock_commit_1.author.name = "John Doe"
 

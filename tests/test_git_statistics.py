@@ -5,7 +5,6 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-# Adjust the path so the module can be found and imported.
 sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "committracker"))
 )
