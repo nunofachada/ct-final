@@ -26,8 +26,8 @@ dependencies = [
     "dash-bootstrap-components"
 ]
 
-[project.entry-points.console_scripts]
-commit-tracker = "committracker.cli:main"
+[project.scripts]
+commit-tracker = "committracker.__main__:main"
 
 [project.entry-points."commit_tracker.plugins"]
 clone_remote_repo = "commit_tracker.git_stats:clone_remote_repo"
