@@ -1,29 +1,30 @@
-name: Docs
+name: Deploy Docs
 
 on:
   push:
-    branches: [main]
-    tags: "*"
-    paths: ["docs/**", "*.md"]
-  workflow_dispatch:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
 
 jobs:
-  docs:
+  deploy-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v3
         with:
-          python-version: "3.10"
+          python-version: '3.x'
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install -e .[dev]
+          python -m pip install --upgrade pip
           pip install mkdocs mkdocs-material
-      - name: Build and Deploy docs to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Build the MkDocs Documentation
+        run: mkdocs build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages
-          folder: site
-          build_command: mkdocs build --config-file mkdocs.yml
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
