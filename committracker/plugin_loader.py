@@ -1,23 +1,23 @@
-import pkgutil
-from importlib import import_module
+from importlib import metadata
 
 
-# Function to dynamically load plugin functions from a specified directory
 def load_plugins():
+    """
+    Loads plugins using entry points.
+
+    This function discovers and loads plugins registered under the
+    "commit_tracker.plugins" entry point, associating each plugin with its
+    corresponding function.
+
+    Returns:
+        A dictionary where keys are plugin names and values are the loaded plugin functions.
+    """
     plugins = {}
-    # Iterates through modules in the 'committracker/plugins' directory
-    for _, name, _ in pkgutil.iter_modules(["committracker/plugins"]):
-        if name != "__init__":  # Exclude __init__.py from being considered as a plugin
-            module = import_module(
-                f"committracker.plugins.{name}"
-            )  # Dynamically import the plugin module
-            function_name = (
-                f"display_{name}"  # Convention for the plugin's main function
-            )
-            try:
-                # Attempt to fetch the plugin function by its convention name
-                plugins[name] = getattr(module, function_name)
-            except AttributeError as e:
-                # Handles the case where the expected function is not found in the module
-                print(f"Aviso: {e}")
-    return plugins  # Returns a dictionary of plugin names mapped to their functions
+    # Discover and load plugins registered under the "commit_tracker.plugins" entry point
+    for entry_point in metadata.entry_points(group='commit_tracker.plugins'):
+        try:
+            # Load the plugin and associate it with its corresponding function
+            plugins[entry_point.name] = entry_point.load()
+        except Exception as e:
+            print(f"Warning: could not load the plugin {entry_point.name}: {e}")
+    return plugins
