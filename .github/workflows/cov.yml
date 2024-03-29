@@ -1,31 +1,36 @@
 name: Coverage
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches: [main]
+    paths: ["committracker/**", "tests/**", ".github/workflows/cov.yml"]
+  push:
+    branches: [main]
+    paths: ["committracker/**", "tests/**", ".github/workflows/cov.yml"]
+    tags: "*"
 
 jobs:
-  coverage:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: |
-        pip install --upgrade pip
-        pip install dash GitPython pandas plotly dash-bootstrap-components black "flake8>=6.0.0" flake8-black flake8-builtins flake8-bugbear flake8-comprehensions flake8-docstrings flake8-isort flake8-pytest-style flake8-simplify Flake8-pyproject isort mypy pre-commit "pytest>=8.0" "pytest-cov>=3.0.0" pytest-mypy
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e .
 
-    - name: Run tests with coverage
-      run: |
-        pytest --cov=committracker tests/
+      - name: Run Tests with Coverage
+        run: pytest --cov=committracker --cov-report=xml
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.xml
-        fail_ci_if_error: true
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          file: ./coverage.xml
+          fail_ci_if_error: true
