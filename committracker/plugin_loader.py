@@ -14,7 +14,7 @@ def load_plugins():
     """
     plugins = {}
     # Discover and load the plugins registered under the "commit_tracker.plugins" entry point
-    for entry_point in metadata.entry_points(group='commit_tracker.plugins'):
+    for entry_point in metadata.entry_points(group="commit_tracker.plugins"):
         try:
             # Load the plugin and associate it with its corresponding function
             plugins[entry_point.name] = entry_point.load()
