@@ -1,30 +1,34 @@
 name: Coverage
 
-on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
-    tags: "*"
+on: [push, pull_request]
 
 jobs:
-  determine-coverage:
+  coverage:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - name: Install dependencies
-        run: |
-          pip install pip --upgrade
-          pip install -e .[dev]
-      - name: Run tests with coverage
-        run: pytest --cov=committracker --cov-report=xml
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          file: ./coverage.xml
-          token: ${{ secrets.CODECOV_TOKEN }}
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install dash GitPython pandas plotly dash-bootstrap-components black flake8 pytest pytest-cov
+
+    - name: Run tests with coverage
+      run: |
+        pytest --cov=committracker tests/
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
+        verbose: true
