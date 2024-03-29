@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Tests](https://github.com/andrecosta99/ct-final/actions/workflows/test.yml/badge.svg?branch=master)
-[![codecov](https://codecov.io/gh/andrecosta99/ct-final/branch/master/graph/badge.svg?token=SEU_TOKEN)](https://codecov.io/gh/andrecosta99/ct-final)
+[![codecov](https://codecov.io/gh/andrecosta99/ct-final/branch/master/graph/badge.svg)](https://codecov.io/gh/andrecosta99/ct-final)
 [![Docs](https://img.shields.io/badge/docs-click%20here-blue.svg)](https://andrecosta99.github.io/ct-final/)
 [![PyPI version](https://badge.fury.io/py/commit-tracker.svg)](https://badge.fury.io/py/commit-tracker)
 ![GitHub last commit](https://img.shields.io/github/last-commit/andrecosta99/ct-final)
