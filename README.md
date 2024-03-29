@@ -1,7 +1,7 @@
-![License](https://img.shields.io/github/license/andrecosta99/ct-final)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://github.com/andrecosta99/ct-final/actions/workflows/test.yml/badge.svg)](https://github.com/andrecosta99/ct-final/actions/workflows/test.yml)
 ![GitHub issues](https://img.shields.io/github/issues/andrecosta99/ct-final)
 ![GitHub forks](https://img.shields.io/github/forks/andrecosta99/ct-final)
-![GitHub stars](https://img.shields.io/github/stars/andrecosta99/ct-final)
 ![GitHub last commit](https://img.shields.io/github/last-commit/andrecosta99/ct-final)
 
 
