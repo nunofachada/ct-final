@@ -30,10 +30,11 @@ dependencies = [
 commit-tracker = "committracker.__main__:main"
 
 [project.entry-points."commit_tracker.plugins"]
-clone_remote_repo = "commit_tracker.git_stats:clone_remote_repo"
-extract_git_stats = "commit_tracker.git_stats:extract_git_stats"
-extract_branches_info_new = "commit_tracker.git_stats:extract_branches_info_new"
-categorize_commit_type = "commit_tracker.git_stats:categorize_commit_type"
+branch_information = "committracker.plugins.branch_information:display_branch_information"
+commit_graph = "committracker.plugins.commit_graph:display_commit_graph"
+contributors = "committracker.plugins.contributors_info:display_contributors_info"
+commit_type = "committracker.plugins.commit_type:display_commit_type"
+git_statistics = "committracker.plugins.git_statistics:display_git_statistics"
 
 [project.optional-dependencies]
 dev = [
