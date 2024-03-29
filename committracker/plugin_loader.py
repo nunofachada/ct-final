@@ -13,7 +13,7 @@ def load_plugins():
         A dictionary where keys are plugin names and values are the loaded plugin functions.
     """
     plugins = {}
-    # Discover and load plugins registered under the "commit_tracker.plugins" entry point
+    # Discover and load the plugins registered under the "commit_tracker.plugins" entry point
     for entry_point in metadata.entry_points(group='commit_tracker.plugins'):
         try:
             # Load the plugin and associate it with its corresponding function
