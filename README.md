@@ -1,3 +1,10 @@
+![License](https://img.shields.io/github/license/andrecosta99/ct-final)
+![GitHub issues](https://img.shields.io/github/issues/andrecosta99/ct-final)
+![GitHub forks](https://img.shields.io/github/forks/andrecosta99/ct-final)
+![GitHub stars](https://img.shields.io/github/stars/andrecosta99/ct-final)
+![GitHub last commit](https://img.shields.io/github/last-commit/andrecosta99/ct-final)
+
+
 # Commit Tracker
 
 Commit Tracker is a tool designed to fetch and present comprehensive statistics from Git repositories. Whether the repository is hosted locally or on platforms like GitHub, Commit Tracker seamlessly analyzes commit history, contribution patterns, and other vital metrics. This utility is particularly useful for developers and teams looking to gain insights into project trends, contributor activity, and overall repository health. Built with Python and leveraging technologies such as Dash and Plotly, it provides an interactive and visually appealing interface for data representation.
