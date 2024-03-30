@@ -3,16 +3,16 @@ name: Docs
 on:
   push:
     branches: [master]
-    paths: ["docs/**", "mkdocs.yml"]
-  workflow_dispatch:
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+    tags: "*"
 
 jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -20,12 +20,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install .[dev]
           pip install mkdocs mkdocs-material
       - name: Build Documentation
         run: |
           mkdocs build
-      - name: Deploy to GitHub Pages 🚀
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages

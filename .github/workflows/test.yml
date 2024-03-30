@@ -19,23 +19,22 @@ on:
 
 jobs:
   run-tests:
-    name: Python ${{ matrix.version }} - ${{ matrix.os }} - ${{ github.event_name }}
+    name: Python ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        version: ["3.8", "3.10"]
+        python-version: [3.8, 3.10]
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - name: Setup Python
+      - uses: actions/checkout@v4
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.version }}
+          python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          pip install pip --upgrade
           pip install .[dev]
       - name: Run tests
-        run: pytest --cov=committracker
+        run: pytest
