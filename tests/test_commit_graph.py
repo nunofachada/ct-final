@@ -7,9 +7,8 @@ import pytest
 from dash import dcc
 from dash.exceptions import PreventUpdate
 
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "committracker"))
-)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 
 from committracker.plugins.code_quality import run_code_quality_analysis
 

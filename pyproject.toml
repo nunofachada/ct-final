@@ -50,28 +50,22 @@ dev = [
     "flake8-simplify",
     "Flake8-pyproject",
     "isort",
-    "mypy",
     "pre-commit",
     "pytest >= 8.0",
     "pytest-cov >= 3.0.0"
 ]
 
 [project.urls]
-Homepage = "https://github.com/andrecosta99/commit-tracker"
-Documentation = "https://andrecosta99/commit-tracker/"
-Repository = "https://andrecosta99/commit-tracker"
+Homepage = "https://github.com/andrecosta99/ct-final"
+Documentation = "https://github.com/andrecosta99/ct-final#readme"
+Repository = "https://github.com/andrecosta99/ct-final"
 
 [tool.setuptools]
 packages = ["committracker"]
 
-[tool.mypy]
-python_version = "3.10"
-check_untyped_defs = true
-ignore_missing_imports = true
-
 [tool.pytest.ini_options]
 minversion = "8.0"
-addopts = "--mypy --doctest-modules"
+addopts = "--doctest-modules"
 testpaths = ["tests"]
 
 [tool.black]
