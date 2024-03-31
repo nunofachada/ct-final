@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "commit-tracker"
-version = "2.2"
+version = "2.3"
 description = "Commit Tracker analyzes Git repositories to present comprehensive statistics."
 authors = [{name = "André F. Costa", email = "afmcosta@gmail.com"}]
 readme = "README.md"
