@@ -2,8 +2,8 @@ import dash_bootstrap_components as dbc
 from dash import Input, Output, State, callback, html
 from dash.exceptions import PreventUpdate
 
-from .plugin_loader import load_plugins  # Function to load available plugins
-from .utils import clone_remote_repo  # Function to clone a Git repository
+from .plugin_loader import load_plugins
+from .utils import clone_remote_repo
 
 # Mapping of plugin identifiers to their display titles
 PLUGIN_TITLES = {
