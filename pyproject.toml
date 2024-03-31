@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "commit-tracker"
-version = "2.1"
+version = "2.2"
 description = "Commit Tracker analyzes Git repositories to present comprehensive statistics."
 authors = [{name = "André F. Costa", email = "afmcosta@gmail.com"}]
 readme = "README.md"
@@ -24,6 +24,7 @@ dependencies = [
     "pandas",
     "plotly",
     "dash-bootstrap-components"
+
 ]
 
 [project.scripts]
@@ -52,7 +53,7 @@ dev = [
     "isort",
     "pre-commit",
     "pytest >= 8.0",
-    "pytest-cov >= 3.0.0"
+    "pytest-cov >= 3.0.0",
 ]
 
 [project.urls]
