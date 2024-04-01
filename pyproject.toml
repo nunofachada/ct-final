@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "commit-tracker"
-version = "2.4"
+version = "2.5"
 description = "Commit Tracker analyzes Git repositories to present comprehensive statistics."
 authors = [{name = "André F. Costa", email = "afmcosta@gmail.com"}]
 readme = "README.md"
@@ -65,7 +65,8 @@ Documentation = "https://github.com/andrecosta99/ct-final#readme"
 Repository = "https://github.com/andrecosta99/ct-final"
 
 [tool.setuptools]
-packages = ["committracker"]
+packages = { include = ["committracker*"] }
+
 
 [tool.pytest.ini_options]
 minversion = "8.0"
