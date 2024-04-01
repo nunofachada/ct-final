@@ -54,6 +54,9 @@ dev = [
     "pre-commit",
     "pytest >= 8.0",
     "pytest-cov >= 3.0.0",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings",
 ]
 
 [project.urls]
