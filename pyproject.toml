@@ -65,8 +65,10 @@ Documentation = "https://github.com/andrecosta99/ct-final#readme"
 Repository = "https://github.com/andrecosta99/ct-final"
 
 [tool.setuptools]
-packages = { include = ["committracker*"] }
-
+packages = [
+    "committracker",
+    "committracker.plugins",
+]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
